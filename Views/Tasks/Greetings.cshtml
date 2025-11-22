@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Greetings";
+    
+    string myMessage = "Hello C# Marathon!";
+    
+    string greeting;
+    int hour = DateTime.Now.Hour;
+
+    if (hour < 12 && hour >= 5)
+    {
+        greeting = "Good Morning!";
+    }
+    else if (hour < 18 && hour >= 12)
+    {
+        greeting = (hour >= 17) ? "Good Evening!" : "Good Afternoon!";
+    }
+    else
+    {
+        greeting = "Good Evening!";
+    }
+
+    var today = DateTime.Now;
+}
+
+<h2>Greetings</h2>
+
+<p>The value of myMessage is: <b>@myMessage</b></p>
+<p>The greeting is: Welcome to our project!</p>
+<p>Here in Ukraine: <b>@today.ToString("dddd")</b></p>
+<p>We wish you: <b>@greeting</b></p>
+<p>Today is <b>@today.ToString("dddd")</b></p>
+
+<table border="1" style="width:200px">
+    <tr>
+        <th>Name</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>Day</td>
+        <td>@today.Day</td>
+    </tr>
+    <tr>
+        <td>Hour</td>
+        <td>@today.Hour</td>
+    </tr>
+    <tr>
+        <td>Minute</td>
+        <td>@today.Minute</td>
+    </tr>
+    <tr>
+        <td>Second</td>
+        <td>@today.Second</td>
+    </tr>
+</table>

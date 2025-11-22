@@ -1,0 +1,60 @@
+﻿@model lab2.Models.ShoppingCartViewModel
+@{
+    ViewData["Title"] = "ShoppingCart";
+}
+
+<h2>Your shopping cart</h2>
+
+@using (Html.BeginForm("ShoppingCart", "Tasks", FormMethod.Post))
+{
+    <div>
+        <p>
+            Input your fullname: <br />
+            @Html.TextBoxFor(m => m.FullName)
+        </p>
+        <p>
+            Input your address : <br />
+            @Html.TextBoxFor(m => m.Address)
+        </p>
+    </div>
+
+    <hr />
+
+    <div>
+        @Html.DropDownListFor(m => m.Supermarket, Model.Supermarkets, "Choose supermarket")
+    </div>
+
+    <hr />
+
+    <div>
+        @{
+            var today = DateTime.Today;
+            var tomorrow = today.AddDays(1);
+            var dayAfter = today.AddDays(2);
+        }
+        <p>@Html.RadioButtonFor(m => m.ShipDate, today, new { @checked = "checked" }) @today.ToString("MM/dd/yyyy hh:mm tt")</p>
+        <p>@Html.RadioButtonFor(m => m.ShipDate, tomorrow) @tomorrow.ToString("MM/dd/yyyy hh:mm tt")</p>
+        <p>@Html.RadioButtonFor(m => m.ShipDate, dayAfter) @dayAfter.ToString("MM/dd/yyyy hh:mm tt")</p>
+    </div>
+
+    <hr />
+
+    <div>
+        <p>
+            @Html.ListBoxFor(m => m.SelectedProducts, new MultiSelectList(Model.AllProducts.Keys), new { size = Model.AllProducts.Count })
+        </p>
+    </div>
+
+    <hr />
+
+    <div>
+        <input type="submit" value="Send" />
+    </div>
+}
+
+<hr />
+
+@if (!string.IsNullOrEmpty(Model.ResultMessage))
+{
+    <h3 style="color: black; font-weight: normal;">@Model.ResultMessage</h3>
+}

@@ -1,0 +1,9 @@
+﻿@inject lab2.Services.ITimeService TimeService
+@{
+    var tomorrow = TimeService.GetTimeForTomorrow();
+}
+
+<div style="border: 2px solid red; padding: 10px; width: 300px;">
+    <h3 style="margin: 0;">It's time to shopping!</h3>
+    <p style="margin: 0;">@tomorrow.ToString("MM/dd/yyyy")</p>
+</div>
